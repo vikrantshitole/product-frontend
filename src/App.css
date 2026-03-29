@@ -1,0 +1,16 @@
+.app-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr 220px 160px auto;
+  gap: 0.5rem;
+}
+
+@media (max-width: 992px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+}
