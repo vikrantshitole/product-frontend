@@ -74,10 +74,13 @@ const ProductForm = ({ editingProduct, isSubmitting, onSave, onCancel }) => {
   };
 
   return (
-    <Card className="shadow-sm border-0">
+    <Card className="panel-card shadow-sm border-0">
       <Card.Body>
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h5 className="mb-0">{isEditMode ? "Edit Product" : "Add Product"}</h5>
+          <div>
+            <h5 className="mb-1">{isEditMode ? "Edit Product" : "Add Product"}</h5>
+            <small className="text-muted">All fields are validated before save.</small>
+          </div>
           {isEditMode ? (
             <Button
               variant="outline-secondary"
@@ -181,7 +184,7 @@ const ProductForm = ({ editingProduct, isSubmitting, onSave, onCancel }) => {
               </Form.Group>
             </Col>
           </Row>
-          <Button type="submit" className="mt-4" disabled={isSubmitting}>
+          <Button type="submit" className="mt-4 w-100" disabled={isSubmitting}>
             {isSubmitting ? "Saving..." : isEditMode ? "Update Product" : "Add Product"}
           </Button>
         </Form>

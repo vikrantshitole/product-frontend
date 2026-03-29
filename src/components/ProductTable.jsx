@@ -3,9 +3,9 @@ import { Badge, Button, Card, Table } from "react-bootstrap";
 const ProductTable = ({ products, isLoading, onEdit, onDelete }) => {
   if (isLoading) {
     return (
-      <Card className="shadow-sm border-0">
-        <Card.Body>
-          <p className="text-muted mb-0">Loading products...</p>
+      <Card className="panel-card shadow-sm border-0">
+        <Card.Body className="py-4">
+          <p className="text-muted mb-0 fw-medium">Loading products...</p>
         </Card.Body>
       </Card>
     );
@@ -13,19 +13,19 @@ const ProductTable = ({ products, isLoading, onEdit, onDelete }) => {
 
   if (products.length === 0) {
     return (
-      <Card className="shadow-sm border-0">
-        <Card.Body>
-          <p className="text-muted mb-0">No products found. Add one to get started.</p>
+      <Card className="panel-card shadow-sm border-0">
+        <Card.Body className="py-4">
+          <p className="text-muted mb-0 fw-medium">No products found. Add one to get started.</p>
         </Card.Body>
       </Card>
     );
   }
 
   return (
-    <Card className="shadow-sm border-0">
+    <Card className="panel-card shadow-sm border-0">
       <Card.Body className="p-0">
-        <Table responsive hover className="mb-0 align-middle">
-          <thead className="table-light">
+        <Table responsive hover className="mb-0 align-middle product-table">
+          <thead>
             <tr>
               <th>Name</th>
               <th>SKU</th>
@@ -48,7 +48,16 @@ const ProductTable = ({ products, isLoading, onEdit, onDelete }) => {
                 <td>{product.category || "-"}</td>
                 <td>${Number(product.price).toFixed(2)}</td>
                 <td>
-                  <Badge bg={product.quantity > 0 ? "success" : "secondary"}>
+                  <Badge
+                    bg={
+                      product.quantity > 10
+                        ? "success"
+                        : product.quantity > 0
+                          ? "warning"
+                          : "secondary"
+                    }
+                    text={product.quantity > 0 && product.quantity <= 10 ? "dark" : undefined}
+                  >
                     {product.quantity}
                   </Badge>
                 </td>
